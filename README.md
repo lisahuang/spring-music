@@ -1,11 +1,9 @@
 Spring Music
 ============
 
-This is a sample application for using database services on [Cloud Foundry](http://cloudfoundry.org) with the [Spring Framework](http://spring.io).
+This is a sample application for using database services on [Cloud Foundry](http://cloudfoundry.org) with the [Spring Framework](http://spring.io) branch from https://github.com/cloudfoundry-samples/spring-music.
 
-This application has been built to store the same domain objects in one of a variety of different persistence technologies - relational, document, and key-value stores. This is not meant to represent a realistic use case for these technologies, since you would typically choose the one most applicable to the type of data you need to store, but it is useful for testing and experimenting with different types of services on Cloud Foundry. 
-
-The application use Spring Java configuration and [bean profiles](https://spring.io/blog/2011/02/14/spring-3-1-m1-introducing-profile/) to configure the application and the connection objects needed to use the persistence stores. It also uses the [Spring Cloud Connectors](http://cloud.spring.io/spring-cloud-connectors/) library to inspect the environment when running on Cloud Foundry. See the [Cloud Foundry documentation](http://docs.cloudfoundry.org/buildpacks/java/spring-service-bindings.html) for details on configuring a Spring application for Cloud Foundry.
+This application is updated to test AppDynamic monitoring.
 
 ## Running the application locally
 
@@ -30,6 +28,10 @@ must be started separately. The application will use the host name `localhost` a
 
 If more than one of these profiles is provided, the application will throw an exception and fail to start.
 
+Download AppD Java Agent from AppDynamics Controller https://docs.appdynamics.com/display/PRO45/Install+the+Java+Agent
+
+java -javaagent:<path to AppD Java Agent Home>/javaagent.jar -Dappdynamics.agent.tierName=spring-music -Dappdynamics.agent.nodeName=GC02T314SGTFME -jar build/libs/spring-music-1.0.jar
+
 ## Running the application on Cloud Foundry
 
 When running on Cloud Foundry, the application will detect the type of database service bound to the application
@@ -42,7 +44,14 @@ If no bound services are found containing any of these values in the name, then 
 If more than one service containing any of these values is bound to the application, the application will throw an
 exception and fail to start.
 
+AppDynamics agent is download once the buildpack is enabled in manifest.yml.
+~
+  buildpacks:
+    - https://github.com/cloudfoundry/java-buildpack.git
+~
+
 After installing the 'cf' [command-line interface for Cloud Foundry](http://docs.cloudfoundry.org/cf-cli/), targeting a Cloud Foundry instance, and logging in, the application can be built and pushed using these commands:
+
 
 ~~~
 $ ./gradlew assemble
