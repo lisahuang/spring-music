@@ -30,7 +30,9 @@ If more than one of these profiles is provided, the application will throw an ex
 
 Download AppD Java Agent from AppDynamics Controller https://docs.appdynamics.com/display/PRO45/Install+the+Java+Agent
 
+~~~
 java -javaagent:<path to AppD Java Agent Home>/javaagent.jar -Dappdynamics.agent.tierName=spring-music -Dappdynamics.agent.nodeName=GC02T314SGTFME -jar build/libs/spring-music-1.0.jar
+~~~
 
 ## Running the application on Cloud Foundry
 
@@ -45,10 +47,10 @@ If more than one service containing any of these values is bound to the applicat
 exception and fail to start.
 
 AppDynamics agent is download once the buildpack is enabled in manifest.yml.
-~
+~~~
   buildpacks:
     - https://github.com/cloudfoundry/java-buildpack.git
-~
+~~~
 
 After installing the 'cf' [command-line interface for Cloud Foundry](http://docs.cloudfoundry.org/cf-cli/), targeting a Cloud Foundry instance, and logging in, the application can be built and pushed using these commands:
 
