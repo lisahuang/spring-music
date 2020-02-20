@@ -3,7 +3,7 @@ Spring Music
 
 This is a sample application for using database services on [Cloud Foundry](http://cloudfoundry.org) with the [Spring Framework](http://spring.io) branch from https://github.com/cloudfoundry-samples/spring-music.
 
-This application is updated to test AppDynamic monitoring.
+This application is updated to deploy with AppDynamic monitoring.
 
 ## Running the application locally
 
