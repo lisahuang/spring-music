@@ -103,6 +103,16 @@ $ cf bind-service <app name> <service name>
 $ cf restart
 ~~~
 
+#### AppDynamics User-provided services
+~~~
+# create a user-provided Oracle database service instance
+$ cf cups appdynamics-cups -p '{"host-name":"<hostname>", "port”:443, "account-name”:"name1", "account-access-key":"<access-key>", "ssl-enabled": true}'
+# bind a service instance to the application
+$ cf bs spring-music appdynamics-cups
+# restage the application so the new service is detected
+$ cf restage spring-music
+~~~
+
 #### Changing bound services
 
 To test the application with different services, you can simply stop the app, unbind a service, bind a different
